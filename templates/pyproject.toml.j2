@@ -1,0 +1,26 @@
+[project]
+name = "{{ project_name }}"
+version = "0.1.0"
+description = "Production-ready AI service forged by SOLA"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "fastapi",
+    "uvicorn",
+    "openai",
+    "pydantic",
+    "python-dotenv",
+]
+[dependency-groups]
+dev = [
+    "pytest",
+    "pytest-asyncio",
+    "deepeval",
+    "ruff",
+    "httpx",
+    "pre-commit",
+]
+
+[tool.pytest.ini_options]
+pythonpath = ["."]
+asyncio_mode = "auto"
