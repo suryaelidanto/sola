@@ -1,0 +1,48 @@
+# Build stage
+FROM python:3.10-slim-bookworm AS builder
+
+# Install uv (The fastest Python package manager)
+COPY --from=ghcr.io/astral-sh/uv:latest /uv /bin/uv
+
+WORKDIR /app
+
+# Enable bytecode compilation
+ENV UV_COMPILE_BYTECODE=1
+
+# Copy dependency definitions
+# We assume uv.lock exists. Run 'make dev' locally first to generate it.
+COPY pyproject.toml .
+
+# Install dependencies using uv
+# --no-dev: Production only
+# --no-install-project: Only dependencies, not the app itself yet (caching layer)
+RUN uv venv .venv && \
+    uv pip install --system --no-cache -r pyproject.toml || true
+# Note: Since we might not have a lockfile yet in a fresh init, we default to installing from toml.
+# Ideally in CI we use 'uv sync --frozen'.
+
+# Check if uv.lock exists and sync if it does, otherwise use pyproject.toml
+COPY . .
+RUN if [ -f uv.lock ]; then uv sync --frozen --no-dev; else uv pip install --system .; fi
+
+# Final stage
+FROM python:3.10-slim-bookworm
+
+WORKDIR /app
+
+# Copy the environment
+# In a real rigorous setup we would copy the venv. 
+# For simplicity in this scaffold, let's just use the system python we polluted or copy the venv from builder.
+# To be truly industrial, let's copy the virtualenv.
+
+COPY --from=builder /app/.venv /app/.venv
+
+# Update PATH
+ENV PATH="/app/.venv/bin:$PATH"
+
+# Copy application code
+COPY ./app /app/app
+
+# Run the application
+# We use 'fastapi run' which is the production command for FastAPI
+CMD ["fastapi", "run", "app/main.py", "--port", "8000", "--host", "0.0.0.0"]

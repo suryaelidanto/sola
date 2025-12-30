@@ -41,6 +41,8 @@ def create_project(
             "pyproject.toml.j2": "pyproject.toml",
             "main.py.j2": "app/main.py",
             "health_router.py.j2": "app/features/health/router.py",
+            "Dockerfile.j2": "Dockerfile",
+            "docker-compose.yml.j2": "docker-compose.yml",
         }
 
         context = {"project_name": project_name}

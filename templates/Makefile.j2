@@ -1,23 +1,33 @@
 .PHONY: setup dev test lint up down
 
+# Install dependencies and pre-commit hooks
 setup:
 	uv sync
 	uv run pre-commit install
 
+# Start development server with hot reload
 dev:
 	uv sync
 	uv run pre-commit install
 	uv run uvicorn app.main:app --reload --port 8000
 
+# Run tests
 test:
 	uv run pytest
 
+# Lint and format code
 lint:
 	uv run ruff check . --fix
 	uv run ruff format .
 
+# Start containers in detached mode
 up:
-	docker compose up --build
+	docker compose up --build -d
 
+# Start containers with file watching (Hot Reload)
+watch:
+	docker compose watch
+
+# Stop and remove containers
 down:
 	docker compose down

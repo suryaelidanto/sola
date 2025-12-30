@@ -20,7 +20,7 @@ def render_file(template_name: str, target_path: Path, context: dict):
     """Renders a Jinja2 template with provided data."""
     template = env.get_template(template_name)
     content = template.render(context)
-    target_path.write_text(content)
+    target_path.write_text(content, encoding="utf-8")
 
 
 def get_api_key() -> str:

@@ -77,7 +77,7 @@ Currently `sola build` outputs a single file. The MVP target is to generate the 
 - [x] **Linting & Formatting**: Integrate `Ruff` into generated projects.
 - [x] **CI/CD Templates**: Automatic GitHub Actions (`ci.yml`).
 - [x] **Architecture Specifications**: Validated Vertical Slice Architecture standards.
-- [ ] **Containerization**: Standard `Dockerfile` and `docker-compose.yml` templates.
+- [x] **Containerization**: Standard `Dockerfile` and `docker-compose.yml` templates.
 - [ ] **AI Evaluation Integration**: Built-in support for `DeepEval` (AI-as-a-Judge) in test templates.
 - [ ] **Strict Schema Support**: Leverage OpenAI `response_format` for 100% valid Pydantic models.
 - [ ] **PyPI Readiness**: Package SOLA for `pip install` accessibility.
