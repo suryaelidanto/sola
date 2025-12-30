@@ -1,21 +1,23 @@
 .PHONY: setup dev test lint up down
 
 setup:
-    uv sync
+	uv sync
+	uv run pre-commit install
 
 dev:
-    uv sync
-    uv run pre-commit install
+	uv sync
+	uv run pre-commit install
+	uv run uvicorn app.main:app --reload --port 8000
 
 test:
-    uv run pytest
+	uv run pytest
 
 lint:
-    uv run ruff check . --fix
-    uv run ruff format .
+	uv run ruff check . --fix
+	uv run ruff format .
 
 up:
-    docker compose up --build
+	docker compose up --build
 
 down:
-    docker compose down
+	docker compose down

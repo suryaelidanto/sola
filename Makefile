@@ -3,10 +3,12 @@
 # Install all dependencies and setup the project
 setup:
 	uv sync
+	uv run pre-commit install
 
 # Setup local development environment with editable CLI installation
 dev:
 	uv sync
+	uv run pre-commit install
 	uv tool install --editable . --force
 
 # Run all unit tests using pytest
