@@ -8,7 +8,7 @@ SOLA is an opinionated CLI tool designed for AI Engineers to scaffold production
 
 ## Core Philosophy
 1.  **Architecture over Boilerplate:** Every project starts with a modular, enterprise-ready structure.
-## 🏗 The "Golden Stack" (Opinionated)
+## The "Golden Stack" (Opinionated)
 SOLA doesn't ask "what do you want?". It gives you what works in production:
 *   **Framework**: `FastAPI` (Async)
 *   **LLM Ops**: `AsyncOpenAI` (Native Structured Outputs)
@@ -19,7 +19,7 @@ SOLA doesn't ask "what do you want?". It gives you what works in production:
 
 ---
 
-## 🚀 Quick Start
+## Quick Start
 - **Python**: 3.10 or higher
 - **UV**: Fast Python package manager ([Installation Guide](https://github.com/astral-sh/uv))
 - **Make**: Standard build automation tool
@@ -28,7 +28,6 @@ SOLA doesn't ask "what do you want?". It gives you what works in production:
 ---
 
 ## Usage
-
 ### 1. Installation
 Install SOLA globally into your local environment:
 ```bash
