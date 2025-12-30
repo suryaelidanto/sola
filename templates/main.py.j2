@@ -1,0 +1,25 @@
+from fastapi import FastAPI
+from app.features.health.router import router as health_router
+import structlog
+
+# Industrial Logging Setup
+structlog.configure(
+    processors=[
+        structlog.processors.JSONRenderer()
+    ]
+)
+logger = structlog.get_logger()
+
+app = FastAPI(
+    title="{{ project_name }}",
+    version="0.1.0",
+    docs_url="/docs",
+    redoc_url=None,  # Disable ReDoc in prod
+)
+
+# Register Core Features
+app.include_router(health_router, prefix="/api/v1", tags=["System"])
+
+@app.on_event("startup")
+async def startup():
+    logger.info("service_startup", status="ready")
