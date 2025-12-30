@@ -62,8 +62,8 @@ sola build --task "extract legal entities from contract documents using GPT-4o"
 - [x] **Infrastructure Scaffolding**: Modular `app/` and `tests/` generation via `sola init`.
 - [x] **Global Authentication**: Secure API key storage via `sola auth`.
 - [x] **AI Architect**: Autonomous logic generation into `services.py` via `sola build`.
-- [ ] **Linting & Formatting**: Integrate `Ruff` into generated projects for strict code quality.
-- [ ] **CI/CD Templates**: Automatic GitHub Actions (`ci.yml`) generation.
+- [x] **Linting & Formatting**: Integrate `Ruff` into generated projects for strict code quality.
+- [x] **CI/CD Templates**: Automatic GitHub Actions (`ci.yml`) generation.
 - [ ] **Containerization**: Standard `Dockerfile` and `docker-compose.yml` templates.
 - [ ] **AI Evaluation Integration**: Built-in support for DeepEval (AI-as-a-Judge) in test templates.
 - [ ] **Strict Schema Support**: Leverage OpenAI `response_format` for 100% valid Pydantic models.
